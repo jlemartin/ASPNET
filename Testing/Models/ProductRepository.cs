@@ -44,6 +44,12 @@ namespace Testing.Models
             return _conn.Query<Category>("SELECT * FROM categories;");
         }
 
+        public IEnumerable<Product> GetCategoryProducts(int id)
+        {
+            return _conn.Query<Product>("SELECT * FROM PRODUCTS WHERE CATEGORYID = @id",
+                new { id = id });
+        }
+
         public Product GetProduct(int id)
         {
             return _conn.QuerySingle<Product>("SELECT * FROM PRODUCTS WHERE PRODUCTID = @id",

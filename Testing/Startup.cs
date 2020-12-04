@@ -35,6 +35,8 @@ namespace Testing
 
             services.AddTransient<IProductRepository, ProductRepository>();
 
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+
             services.AddControllersWithViews();
         }
 
