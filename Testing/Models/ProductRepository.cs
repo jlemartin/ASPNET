@@ -46,9 +46,18 @@ namespace Testing.Models
 
         public IEnumerable<Product> GetCategoryProducts(int id)
         {
-            return _conn.Query<Product>("SELECT * FROM PRODUCTS WHERE CATEGORYID = @id",
+            return _conn.Query<Product>("SELECT P.ProductID, P.Name, P.Price, P.CategoryID, P.OnSale, P.StockLevel, C.Name AS CategoryName " +
+                "FROM PRODUCTS AS P " +
+                "INNER JOIN CATEGORIES AS C ON P.CategoryID = C.CategoryID " +
+                "WHERE P.CATEGORYID = @id",
                 new { id = id });
         }
+
+        //public IEnumerable<Product> GetCategoryProducts(int id)
+        //{
+        //    return _conn.Query<Product>("SELECT * FROM PRODUCTS WHERE CATEGORYID = @id",
+        //        new { id = id });
+        //}
 
         public Product GetProduct(int id)
         {
